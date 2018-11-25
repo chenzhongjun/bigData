@@ -5,26 +5,55 @@ services:
     container_name: kibana
     hostname: kibana
     depends_on:
-      - elasticsearch
+      - elasticsearch-master
     ports:
       - "5601:5601"
     volumes:
-      - /Users/zhongjun/projects/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
       es_kibana:
         ipv4_address: 172.25.10.10
-  elasticsearch:
+  elasticsearch-master:
     image: elasticsearch:6.5.1
-    container_name: elasticsearch
-    hostname: es
+    container_name: elasticsearch-master
+    hostname: es1
+    volumes:
+      - "./data/es1:/usr/share/elasticsearch/data"
+      - "./config/es-master.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
     ports:
       - "9200:9200"
       - "9300:9300"
-    environment:
-      - DISCOVERY_TYPE=single-node
     networks:
       es_kibana:
         ipv4_address: 172.25.10.11
+  elasticsearch-data1:
+    image: elasticsearch:6.5.1
+    container_name: elasticsearch-data1
+    hostname: es2
+    volumes:
+      - "./data/es2:/usr/share/elasticsearch/data"
+      - "./config/es-data1.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    networks:
+      es_kibana:
+        ipv4_address: 172.25.10.12
+
+  elasticsearch-data2:
+    image: elasticsearch:6.5.1
+    container_name: elasticsearch-data2
+    hostname: es3
+    volumes:
+      - "./data/es3:/usr/share/elasticsearch/data"
+      - "./config/es-data2.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+    ports:
+      - "9202:9200"
+      - "9302:9300"
+    networks:
+      es_kibana:
+        ipv4_address: 172.25.10.13
+
 
 networks:
   es_kibana:

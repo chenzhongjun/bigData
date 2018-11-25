@@ -1,0 +1,8 @@
+cluster.name: es-cluster 
+node.name: node-data2
+node.master: false 
+node.data: true
+http.port: 9200
+network.host: 0.0.0.0
+network.publish_host: 172.25.10.13
+discovery.zen.ping.unicast.hosts: ["172.25.10.11:9300"]
