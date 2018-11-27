@@ -17,6 +17,8 @@ services:
     image: elasticsearch:6.5.1
     container_name: elasticsearch-master
     hostname: es1
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - "./data/es1:/usr/share/elasticsearch/data"
       - "./config/es-master.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -30,6 +32,8 @@ services:
     image: elasticsearch:6.5.1
     container_name: elasticsearch-data1
     hostname: es2
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - "./data/es2:/usr/share/elasticsearch/data"
       - "./config/es-data1.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
@@ -44,6 +48,8 @@ services:
     image: elasticsearch:6.5.1
     container_name: elasticsearch-data2
     hostname: es3
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - "./data/es3:/usr/share/elasticsearch/data"
       - "./config/es-data2.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
