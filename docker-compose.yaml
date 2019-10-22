@@ -1,7 +1,7 @@
 version: '2'
 services:
   kibana:
-    image: kibana:6.5.1
+    image: kibana:7.4.0
     container_name: kibana
     hostname: kibana
     depends_on:
@@ -14,7 +14,7 @@ services:
       es_kibana:
         ipv4_address: 172.25.10.10
   elasticsearch-master:
-    image: elasticsearch:6.5.1
+    image: elasticsearch:7.4.0
     container_name: elasticsearch-master
     hostname: es1
     volumes:
@@ -27,7 +27,7 @@ services:
       es_kibana:
         ipv4_address: 172.25.10.11
   elasticsearch-data1:
-    image: elasticsearch:6.5.1
+    image: elasticsearch:7.4.0
     container_name: elasticsearch-data1
     hostname: es2
     volumes:
@@ -41,7 +41,7 @@ services:
         ipv4_address: 172.25.10.12
 
   elasticsearch-data2:
-    image: elasticsearch:6.5.1
+    image: elasticsearch:7.4.0
     container_name: elasticsearch-data2
     hostname: es3
     volumes:
